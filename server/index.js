@@ -1,4 +1,3 @@
-const express = require("express");
 const { conn } = require("./src/db.js");
 const server = require("./src/app.js");
 
@@ -7,10 +6,10 @@ const PORT = process.env.PORT || 3001;
 
 // Connect to DB and start Server
 conn
-  .authenticate()
+  .sync()
   .then(() =>
     server.listen(PORT, () => {
-      console.log(`Server Working at Port: ${PORT}`);
+      console.log(`Server listening on PORT: ${PORT}`);
     })
   )
   .catch((error) => console.log(error));
