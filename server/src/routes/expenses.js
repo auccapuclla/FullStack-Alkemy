@@ -23,7 +23,23 @@ routerExpenses.post("/", async (req, res, next) => {
 // Get all expenses from DB
 routerExpenses.get("/", async (req, res, next) => {
   try {
-    let newExpenses = await Expenses.findAll();
+    let newExpenses = await Expenses.findAll({
+      order: [["updatedAt", "DESC"]],
+    });
+    res.status(200).json(newExpenses);
+  } catch (error) {
+    console.error("Error in fetching:", error.message);
+    res.status(404).json("error");
+  }
+});
+
+// Get 10 lastest income from DB
+routerExpenses.get("/latestExpenses", async (req, res, next) => {
+  try {
+    let newExpenses = await Expenses.findAll({
+      limit: 10,
+      order: [["updatedAt", "DESC"]],
+    });
     res.status(200).json(newExpenses);
   } catch (error) {
     console.error("Error in fetching:", error.message);

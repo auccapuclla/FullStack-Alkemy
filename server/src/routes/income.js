@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { Op } = require("sequelize");
 const { Expenses, Income } = require("../db.js");
 
+const routerIncome = Router();
 // Add income on DB
 routerIncome.post("/", async (req, res, next) => {
   try {
@@ -21,7 +22,23 @@ routerIncome.post("/", async (req, res, next) => {
 // Get all income from DB
 routerIncome.get("/", async (req, res, next) => {
   try {
-    let newIncome = await Income.findAll();
+    let newIncome = await Income.findAll({
+      order: [["updatedAt", "DESC"]],
+    });
+    res.status(200).json(newIncome);
+  } catch (error) {
+    console.error("Error in fetching:", error.message);
+    res.status(404).json("error");
+  }
+});
+
+// Get 10 lastest income from DB
+routerIncome.get("/latestIncome", async (req, res, next) => {
+  try {
+    let newIncome = await Income.findAll({
+      limit: 10,
+      order: [["updatedAt", "DESC"]],
+    });
     res.status(200).json(newIncome);
   } catch (error) {
     console.error("Error in fetching:", error.message);
