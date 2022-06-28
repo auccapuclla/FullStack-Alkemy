@@ -5,19 +5,7 @@ const server = require("./app.js");
 // Define port
 const PORT = process.env.PORT || 3001;
 
-// const app = express();
-
-// Enable CORS
-// app.use(cors());
-
-// Body Parser
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// Add router
-// app.use("/", router);
-
-// Connect to DB
+// Connect to DB and start Server
 conn
   .authenticate()
   .then(() =>
