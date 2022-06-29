@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const routerBalance = require("./balance");
 const routerExpenses = require("./expenses");
 const routerIncome = require("./income");
 
@@ -11,5 +12,6 @@ const router = Router();
 
 router.use("/expenses", routerExpenses);
 router.use("/income", routerIncome);
+router.use("/balance", routerBalance);
 
 module.exports = router;

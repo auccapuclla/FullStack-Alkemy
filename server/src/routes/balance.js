@@ -4,18 +4,26 @@ const { Op } = require("sequelize");
 
 const routerBalance = Router();
 
+const sumArray = (array) => {
+  const arrayFromObject = array.map((e) => e["amount"]);
+  console.log(arrayFromObject);
+  return arrayFromObject.reduce((a, b) => a + b, 0);
+};
+
 // Add expenses on DB
-routerBalance.post("/", async (req, res, next) => {
+routerBalance.get("/", async (req, res, next) => {
   try {
-    const { title, description, amount } = req.body;
-    let newExpenses = await Expenses.create({
-      title,
-      description,
-      amount,
+    let arrayIncome = await Income.findAll({
+      attributes: ["amount"],
     });
-    res.status(200).json(newExpenses);
+    let arrayExpenses = await Expenses.findAll({
+      attributes: ["amount"],
+    });
+    let totalIncome = sumArray(arrayIncome);
+    let totalExpenses = sumArray(arrayExpenses);
+    res.status(200).json({ balance: totalIncome - totalExpenses });
   } catch (error) {
-    console.error("Error in creation:", error.message);
+    console.error("Error in fetching:", error.message);
     res.status(404).json("error");
   }
 });
