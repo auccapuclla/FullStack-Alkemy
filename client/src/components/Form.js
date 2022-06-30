@@ -4,8 +4,6 @@ import "./Form.css";
 import axios from "axios";
 const BASE_URL = "http://localhost:3001";
 
-// alert(`fetching data from ${type}`);
-
 function Form({ type }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
@@ -24,12 +22,12 @@ function Form({ type }) {
 
   return (
     <div className="container">
-      <h2>{type}</h2>
+      <h3>{type === "income" ? "Income" : "Expenses"}</h3>
       <button onClick={showForm}>Add {type}</button>
       {newIncomeButton ? (
         <div className="form">
           <form onSubmit={handleSubmit}>
-            <div class="container">
+            <div className="container">
               <label for="uname">
                 <b>Description</b>
                 <input

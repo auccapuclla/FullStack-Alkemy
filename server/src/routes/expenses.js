@@ -40,7 +40,7 @@ routerExpenses.get("/latestExpenses", async (req, res, next) => {
       limit: 10,
       order: [["updatedAt", "DESC"]],
     });
-    res.status(200).json(newExpenses);
+    res.status(200).json({ newExpenses });
   } catch (error) {
     console.error("Error in fetching:", error.message);
     res.status(404).json("error");

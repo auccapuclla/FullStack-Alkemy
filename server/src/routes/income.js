@@ -39,7 +39,8 @@ routerIncome.get("/latestIncome", async (req, res, next) => {
       limit: 10,
       order: [["updatedAt", "DESC"]],
     });
-    res.status(200).json(newIncome);
+    console.log(newIncome);
+    res.status(200).json({ newIncome });
   } catch (error) {
     console.error("Error in fetching:", error.message);
     res.status(404).json("error");
