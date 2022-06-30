@@ -6,9 +6,8 @@ import Table from "./Table";
 function Expenses() {
   return (
     <div className="">
-      Expenses
-      <Form />
-      <Table />
+      <Form type={"expenses"} />
+      <Table type={"expenses"} />
     </div>
   );
 }

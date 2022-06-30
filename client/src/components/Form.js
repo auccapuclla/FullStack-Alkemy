@@ -2,30 +2,31 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Form.css";
 import axios from "axios";
-const BASE_URL = "http://localhost:3002";
+const BASE_URL = "http://localhost:3001";
+
+// alert(`fetching data from ${type}`);
 
 function Form({ type }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
-  const [newIncome, setNewIncome] = useState(false);
+  const [newIncomeButton, setNewIncomeButton] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const element = document.querySelector("#delete-request .status");
     axios
-      .post(`${BASE_URL}/${type}`)
-      .then(() => (element.innerHTML = "Delete successful"));
-    alert(`fetching data from ${type}`);
+      .post(`${BASE_URL}/${type}`, { description, amount, date })
+      .then(() => console.log("sucess"));
   };
   const showForm = () => {
-    setNewIncome(!newIncome);
+    setNewIncomeButton(!newIncomeButton);
   };
+
   return (
     <div className="container">
       <h2>{type}</h2>
       <button onClick={showForm}>Add Income</button>
-      {newIncome ? (
+      {newIncomeButton ? (
         <div className="form">
           <form onSubmit={handleSubmit}>
             <div class="container">
