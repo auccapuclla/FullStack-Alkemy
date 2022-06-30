@@ -51,6 +51,7 @@ routerIncome.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     let income = await Income.findByPk(id);
+    console.log(income);
     res.status(200).json(income);
   } catch (error) {
     console.error("Error in fetching:", error.message);
