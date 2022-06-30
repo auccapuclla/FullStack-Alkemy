@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Table.css";
 import axios from "axios";
 const Balance = ({ type }) => {
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = "https://alchemy-fs-backend.herokuapp.com";
   const [fetchedIncome, setFetchIncome] = useState([]);
   const [fetchedExpenses, setFetchExpenses] = useState([]);
 

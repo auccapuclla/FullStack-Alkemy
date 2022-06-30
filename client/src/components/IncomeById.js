@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Form.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-const BASE_URL = "http://localhost:3001";
 
 function IncomeById({ type = "income" }) {
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = "https://alchemy-fs-backend.herokuapp.com";
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");

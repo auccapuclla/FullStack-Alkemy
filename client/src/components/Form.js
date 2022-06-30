@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Form.css";
 import axios from "axios";
-const BASE_URL = "http://localhost:3001";
 
 function Form({ type }) {
+  const BASE_URL = "https://alchemy-fs-backend.herokuapp.com";
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");

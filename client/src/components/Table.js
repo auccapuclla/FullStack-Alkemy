@@ -4,7 +4,7 @@ import "./Table.css";
 import axios from "axios";
 const Table = ({ type }) => {
   // Deletes a movement
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = "https://alchemy-fs-backend.herokuapp.com";
   const [fetchedData, setFetchData] = useState([]);
 
   useEffect(() => {
