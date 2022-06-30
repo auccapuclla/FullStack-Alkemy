@@ -7,9 +7,9 @@ const routerExpenses = Router();
 // Add expenses on DB
 routerExpenses.post("/", async (req, res, next) => {
   try {
-    const { title, description, amount } = req.body;
+    const { date, description, amount } = req.body;
     let newExpenses = await Expenses.create({
-      title,
+      date,
       description,
       amount,
     });
@@ -64,8 +64,8 @@ routerExpenses.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     let expenses = await Expenses.findByPk(id);
-    const { title, description, amount } = req.body;
-    await expenses.update({ title, description, amount });
+    const { date, description, amount } = req.body;
+    await expenses.update({ date, description, amount });
     await expenses.save();
     res.status(200).json(expenses);
   } catch (error) {

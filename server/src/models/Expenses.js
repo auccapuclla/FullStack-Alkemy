@@ -5,11 +5,12 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("expenses", {
-    title: {
-      type: DataTypes.STRING,
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    description: {
+    date: {
+      // type: DataTypes.DATE,
       type: DataTypes.TEXT,
       allowNull: false,
     },

@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
 import Table from "./components/Table";
-import Expense from "./components/Expense";
+import Expenses from "./components/Expenses";
 import Income from "./components/Income";
 import Balance from "./components/Balance";
 import ExpensesById from "./components/ExpensesById";
@@ -17,11 +17,11 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Balance />} />
-          <Route path="expenses" element={<Expense />} />
+          <Route path="expenses" element={<Expenses />} />
           <Route path="expenses/:id" element={<ExpensesById />} />
           <Route path="income" element={<Income />} />
           <Route path="income/:id" element={<IncomeById />} />

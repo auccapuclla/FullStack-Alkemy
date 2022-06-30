@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Table.css";
-
-const Table = ({
-  movements = [{ id: 10, concept: "d", date: "das", type: "das" }],
-  setConsult,
-}) => {
-  if (movements.length === 0) {
-    return null;
-  }
-
+import axios from "axios";
+const Table = ({ data, type }) => {
   // Deletes a movement
-  const removeMovement = (id) => {
-    // axiosClient
-    //   .delete(`/movements/${id}`)
-    //   .then((res) => {
-    //     setConsult(true);
-    //   })
-    //   .catch((error) => console.log(error));
+  const BASE_URL = "http://localhost:3002";
+  const [fetchedData, setFetchData] = useState([]);
+  axios.get(`https://jsonplaceholder.typicode.com/users`).then((res) => {
+    const persons = res.data;
+    this.setState({ persons });
+  });
+
+  useEffect(() => {
+    axios
+      .delete(`${BASE_URL}/${type}`)
+      .then((response) => console.log(response));
+    // fetch("https://dog.ceo/api/breeds/image/random")
+    // .then(response => response.json())
+    //     // 4. Setting *dogImage* to the image url that we received from the response above
+    // .then(data => setDogImage(data.message))
+  }, []);
+
+  const handleDelete = (id) => {
+    const element = document.querySelector("#delete-request .status");
+    axios
+      .delete(`${BASE_URL}/${type}/${id}`)
+      .then(() => (element.innerHTML = "Delete successful"));
   };
 
   return (
@@ -31,42 +39,23 @@ const Table = ({
             <th>Amount</th>
             <th>Actions</th>
           </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>
-              <button>Update</button>
-              <button>Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Berglunds snabbköp</td>
-            <td>Christina Berglund</td>
-            <td>Sweden</td>
-            <td>
-              <button>Update</button>
-              <button>Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            <td>
-              <button>Update</button>
-              <button>Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Ernst Handel</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-            <td>
-              <button>Update</button>
-              <button>Delete</button>
-            </td>
-          </tr>
+          {data ? (
+            data.map((elem) => (
+              <tr>
+                <td>{elem.description}</td>
+                <td>{elem.date}</td>
+                <td>{elem.amount}</td>
+                <td>
+                  <Link to={`/income/${elem.id}`}>
+                    <button>Update</button>
+                  </Link>
+                  <button onClick={() => handleDelete(elem.id)}>Delete</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <></>
+          )}
         </tbody>
       </table>
     </div>

@@ -1,20 +1,24 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   // Header State
-  const [movements, setMovements] = useState([]);
-  const [consult, setConsult] = useState(true);
-
   return (
     <div className="topnav">
-      <a className="active" href="#home">
-        Wallet Tracker
+      <a className="active" href="">
+        <Link to={`/`}>Wallet Tracker</Link>
       </a>
-      <a href="#news">Income</a>
-      <a href="#contact">Expenses</a>
-      <a href="#about">Logout</a>
+      <a href="">
+        <Link to={`/income`}>Income</Link>
+      </a>
+      <a href="">
+        <Link to={`/expenses`}>Expenses</Link>
+      </a>
+      <a href="/">
+        <Link to={`/`}>Log Out</Link>
+      </a>
     </div>
   );
 }
