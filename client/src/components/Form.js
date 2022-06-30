@@ -25,7 +25,7 @@ function Form({ type }) {
   return (
     <div className="container">
       <h2>{type}</h2>
-      <button onClick={showForm}>Add Income</button>
+      <button onClick={showForm}>Add {type}</button>
       {newIncomeButton ? (
         <div className="form">
           <form onSubmit={handleSubmit}>

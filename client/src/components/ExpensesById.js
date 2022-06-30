@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Form.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -11,8 +10,7 @@ function ExpensesById({ type = "expenses" }) {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const { id } = useParams();
-  console.log(id);
-  console.log(`${BASE_URL}/${type}/${id}`);
+
   useEffect(() => {
     axios.get(`${BASE_URL}/${type}/${id}`).then((response) => {
       setDescription(response.data.description);

@@ -6,9 +6,9 @@ const routerIncome = Router();
 // Add income on DB
 routerIncome.post("/", async (req, res, next) => {
   try {
-    const { title, description, amount } = req.body;
+    const { date, description, amount } = req.body;
     let newIncome = await Income.create({
-      title,
+      date,
       description,
       amount,
     });
@@ -64,8 +64,8 @@ routerIncome.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     let income = await Income.findByPk(id);
-    const { title, description, amount } = req.body;
-    await income.update({ title, description, amount });
+    const { date, description, amount } = req.body;
+    await income.update({ date, description, amount });
     await income.save();
     res.status(200).json(income);
   } catch (error) {

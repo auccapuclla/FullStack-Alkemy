@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Table.css";
 import axios from "axios";
-const Table = ({ data, type }) => {
+const Table = ({ type }) => {
   // Deletes a movement
   const BASE_URL = "http://localhost:3001";
   const [fetchedData, setFetchData] = useState([]);
@@ -35,7 +35,7 @@ const Table = ({ data, type }) => {
                 <td>{elem.date}</td>
                 <td>{elem.amount}</td>
                 <td>
-                  <Link to={`/income/${elem.id}`}>
+                  <Link to={`/${type}/${elem.id}`}>
                     <button>Update</button>
                   </Link>
                   <button onClick={() => handleDelete(elem.id)}>Delete</button>
