@@ -33,7 +33,7 @@ const Table = ({ type }) => {
             fetchedData.map((elem) => (
               <tr key={elem.id}>
                 <td>{elem.description}</td>
-                <td>{elem.date}</td>
+                <td>{elem.date.substring(0, 10)}</td>
                 <td>{elem.amount}</td>
                 <td>
                   <Link to={`/${type}/${elem.id}`}>
