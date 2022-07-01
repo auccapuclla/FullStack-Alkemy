@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Form.css";
 import axios from "axios";
+import BASE_URL from "../GLOBAL_VAR";
 
 function Form({ type }) {
-  const BASE_URL = "https://alchemy-fs-backend.herokuapp.com";
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
@@ -19,7 +19,6 @@ function Form({ type }) {
   const showForm = () => {
     setNewIncomeButton(!newIncomeButton);
   };
-
   return (
     <div className="container">
       <h3>{type === "income" ? "Income" : "Expenses"}</h3>
@@ -44,7 +43,7 @@ function Form({ type }) {
                 <input
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  type="text"
+                  type="date"
                   placeholder="Enter Date"
                   name="uname"
                   required

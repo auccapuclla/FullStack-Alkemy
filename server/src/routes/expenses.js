@@ -24,7 +24,7 @@ routerExpenses.post("/", async (req, res, next) => {
 routerExpenses.get("/", async (req, res, next) => {
   try {
     let newExpenses = await Expenses.findAll({
-      order: [["updatedAt", "DESC"]],
+      order: [["date", "ASC"]],
     });
     res.status(200).json(newExpenses);
   } catch (error) {
@@ -38,7 +38,7 @@ routerExpenses.get("/latestExpenses", async (req, res, next) => {
   try {
     let newExpenses = await Expenses.findAll({
       limit: 10,
-      order: [["updatedAt", "DESC"]],
+      order: [["date", "ASC"]],
     });
     res.status(200).json({ newExpenses });
   } catch (error) {

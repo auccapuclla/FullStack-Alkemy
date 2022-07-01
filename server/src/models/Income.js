@@ -10,8 +10,8 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     date: {
-      type: DataTypes.TEXT,
-      // type: DataTypes.DATE,
+      // type: DataTypes.TEXT,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     amount: {

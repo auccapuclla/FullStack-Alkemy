@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Table.css";
 import axios from "axios";
+import BASE_URL from "../GLOBAL_VAR";
+
 const Table = ({ type }) => {
   // Deletes a movement
-  const BASE_URL = "https://alchemy-fs-backend.herokuapp.com";
   const [fetchedData, setFetchData] = useState([]);
 
   useEffect(() => {

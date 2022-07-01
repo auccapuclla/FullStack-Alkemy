@@ -23,8 +23,9 @@ routerIncome.post("/", async (req, res, next) => {
 routerIncome.get("/", async (req, res, next) => {
   try {
     let newIncome = await Income.findAll({
-      order: [["updatedAt", "DESC"]],
+      order: [["date", "ASC"]],
     });
+    console.log(newIncome);
     res.status(200).json(newIncome);
   } catch (error) {
     console.error("Error in fetching:", error.message);
@@ -37,7 +38,7 @@ routerIncome.get("/latestIncome", async (req, res, next) => {
   try {
     let newIncome = await Income.findAll({
       limit: 10,
-      order: [["updatedAt", "DESC"]],
+      order: [["date", "ASC"]],
     });
     console.log(newIncome);
     res.status(200).json({ newIncome });
