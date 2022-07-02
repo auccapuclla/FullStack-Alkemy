@@ -1,8 +1,28 @@
 const { Router } = require("express");
 const { Expenses, Income } = require("../db.js");
-const { Op } = require("sequelize");
+const { Op, Sequelize, sequelize } = require("sequelize");
 
 const routerExpenses = Router();
+
+routerExpenses.get("/test", async (req, res, next) => {
+  try {
+    let newExpenses = await Expenses.findAll({
+      order: [["date", "ASC"]],
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("to_char", Sequelize.col("date"), "DD-Mon-YYYY"),
+            "date",
+          ],
+        ],
+      },
+    });
+    res.status(200).json(newExpenses);
+  } catch (error) {
+    console.error("Error in fetching:", error.message);
+    res.status(404).json("error");
+  }
+});
 
 // Add expenses on DB
 routerExpenses.post("/", async (req, res, next) => {
@@ -25,6 +45,14 @@ routerExpenses.get("/", async (req, res, next) => {
   try {
     let newExpenses = await Expenses.findAll({
       order: [["date", "ASC"]],
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("to_char", Sequelize.col("date"), "DD-Mon-YYYY"),
+            "date",
+          ],
+        ],
+      },
     });
     res.status(200).json(newExpenses);
   } catch (error) {
@@ -39,6 +67,14 @@ routerExpenses.get("/latestExpenses", async (req, res, next) => {
     let newExpenses = await Expenses.findAll({
       limit: 10,
       order: [["date", "ASC"]],
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("to_char", Sequelize.col("date"), "DD-Mon-YYYY"),
+            "date",
+          ],
+        ],
+      },
     });
     res.status(200).json({ newExpenses });
   } catch (error) {

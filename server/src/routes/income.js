@@ -24,6 +24,14 @@ routerIncome.get("/", async (req, res, next) => {
   try {
     let newIncome = await Income.findAll({
       order: [["date", "ASC"]],
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("to_char", Sequelize.col("date"), "DD-Mon-YYYY"),
+            "date",
+          ],
+        ],
+      },
     });
     console.log(newIncome);
     res.status(200).json(newIncome);
@@ -39,6 +47,14 @@ routerIncome.get("/latestIncome", async (req, res, next) => {
     let newIncome = await Income.findAll({
       limit: 10,
       order: [["date", "ASC"]],
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("to_char", Sequelize.col("date"), "DD-Mon-YYYY"),
+            "date",
+          ],
+        ],
+      },
     });
     console.log(newIncome);
     res.status(200).json({ newIncome });
