@@ -6,7 +6,6 @@ const routerBalance = Router();
 
 const sumArray = (array) => {
   const arrayFromObject = array.map((e) => e["amount"]);
-  console.log(arrayFromObject);
   return arrayFromObject.reduce((a, b) => a + b, 0);
 };
 

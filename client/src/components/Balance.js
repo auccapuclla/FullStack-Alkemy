@@ -23,9 +23,6 @@ const Balance = ({ type }) => {
       .get(`${BASE_URL}/income/latestIncome`)
       .then((response) => setFetchIncome(response.data.newIncome));
   }, []);
-  const handleDelete = (id) => {
-    axios.delete(`${BASE_URL}/${type}/${id}`).then(() => console.log("sucess"));
-  };
 
   return (
     <div className="container">

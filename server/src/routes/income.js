@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const { Expenses, Income } = require("../db.js");
+const { Expenses, Income, Sequelize } = require("../db.js");
 
 const routerIncome = Router();
 // Add income on DB
